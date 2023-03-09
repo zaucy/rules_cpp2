@@ -1,0 +1,6 @@
+module(name = "rules_cpp2")
+
+bazel_dep(name = "rules_cc", version = "0.0.6")
+
+cppfront_repo = use_extension("//:cppfront.bzl", "cppfront_repo")
+use_repo(cppfront_repo, "cppfront")

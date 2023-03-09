@@ -1,0 +1,8 @@
+module(name = "rules_cpp2_examples")
+
+bazel_dep(name = "rules_cc", version = "0.0.6")
+bazel_dep(name = "rules_cpp2", version = "0.1.0")
+local_path_override(module_name = "rules_cpp2", path = "..")
+
+cppfront_repo = use_extension("@rules_cpp2//:cppfront.bzl", "cppfront_repo")
+use_repo(cppfront_repo, "cppfront")

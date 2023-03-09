@@ -1,0 +1,27 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "cpp2util",
+    hdrs = glob(["include/**/*.h"]),
+    strip_include_prefix = "include",
+)
+
+_MSVC_COPTS = [
+    "/std:c++20",
+    "/EHsc",
+]
+
+cc_binary(
+    name = "cppfront",
+    srcs = glob(["source/**/*", "include/**/*"]),
+    copts = select({
+        "@bazel_tools//tools/cpp:msvc": _MSVC_COPTS,
+        "@bazel_tools//src/conditions:windows": _MSVC_COPTS,
+        "@bazel_tools//src/conditions:windows_msvc": _MSVC_COPTS,
+        "//conditions:default": [
+            "-std=c++20",
+        ],
+    }),
+)

@@ -1,0 +1,2 @@
+main: () = std::cout << "hello cpp2\n";
+

@@ -1,0 +1,16 @@
+load("@rules_cpp2//cpp2:defs.bzl", "cpp2_binary", "cpp2_library", "cpp2_test")
+
+cpp2_library(
+    name = "example_lib",
+    srcs = ["example_lib.cpp2"],
+)
+
+cpp2_binary(
+    name = "example_bin",
+    srcs = ["example_bin.cpp2"],
+)
+
+cpp2_test(
+    name = "example_test",
+    srcs = ["example_test.cpp2"],
+)
